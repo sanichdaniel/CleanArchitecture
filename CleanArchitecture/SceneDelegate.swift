@@ -7,17 +7,36 @@
 //
 
 import UIKit
+import RxFlow
+import AlamofireNetworkActivityLogger
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var coordinator = FlowCoordinator()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        #if DEBUG
+        NetworkActivityLogger.shared.level = .debug
+        NetworkActivityLogger.shared.startLogging()
+        #endif
+        
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+//        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let comicFlow = MovieFlow()
+        
+        Flows.whenReady(flow1: comicFlow) { root in
+            self.window!.rootViewController = root
+            self.window!.makeKeyAndVisible()
+        }
+        
+        self.coordinator.coordinate(flow: comicFlow, with: OneStepper(withSingleStep: MovieStep.showMovieListView))
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
