@@ -14,8 +14,10 @@ import RxCocoa
 final class MovieDetailViewReactor: Reactor, Stepper {
     let steps = PublishRelay<Step>()
     
-    init() {
-        
+    let initialState: State
+    
+    init(movie: Movie) {
+        self.initialState = State(movie: movie)
     }
 
     enum Action {
@@ -25,9 +27,8 @@ final class MovieDetailViewReactor: Reactor, Stepper {
     }
     
     struct State {
+        var movie: Movie
     }
-    
-    let initialState = State()
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
@@ -42,6 +43,6 @@ final class MovieDetailViewReactor: Reactor, Stepper {
     }
     
     func dismiss() {
-        self.steps.accept(MovieStep.showMovieDetial)
+        self.steps.accept(MovieStep.dismiss)
     }
 }

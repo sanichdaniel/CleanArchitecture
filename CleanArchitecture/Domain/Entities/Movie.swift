@@ -23,13 +23,25 @@ struct Movie: Codable {
     var type: String
     var title: String
     var imdbID: String
-    var posterImage: String
+    var poster: String?
+    var posterImage: String? {
+        get {
+            if poster == "N/A" {
+                return nil
+            } else {
+                return poster
+            }
+        }
+        set {
+            poster = newValue
+        }
+    }
     
     enum CodingKeys: String, CodingKey {
         case year = "Year"
         case type = "Type"
         case title = "Title"
         case imdbID = "imdbID"
-        case posterImage = "Poster"
+        case poster = "Poster"
     }
 }

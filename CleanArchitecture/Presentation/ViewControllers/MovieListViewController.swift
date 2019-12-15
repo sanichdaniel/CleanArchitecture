@@ -21,6 +21,7 @@ final class MovieListViewController: BaseViewController, StoryboardView, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.becomeFirstResponder()
     }
 
     func bind(reactor: MovieListViewReactor) {

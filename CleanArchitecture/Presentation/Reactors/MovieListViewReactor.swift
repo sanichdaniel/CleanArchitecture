@@ -77,6 +77,6 @@ final class MovieListViewReactor: Reactor, Stepper {
     }
     
     func showMovieDetail(_ movie: Movie) {
-        self.steps.accept(MovieStep.showMovieDetial)
+        self.steps.accept(MovieStep.showMovieDetial(movie))
     }
 }

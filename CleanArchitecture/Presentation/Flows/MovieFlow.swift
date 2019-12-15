@@ -28,22 +28,26 @@ final class MovieFlow: Flow {
         switch step {
         case .showMovieListView:
             return showMovieListView()
-        case .showMovieDetial:
-            return showMovieDetail()
+        case let .showMovieDetial(movie):
+            return showMovieDetail(movie)
+        case .dismiss:
+            rootViewController.dismiss(animated: true, completion: nil)
+            return .none
         }
     }
     
     private func showMovieListView() -> FlowContributors {
         let movieListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController") as! MovieListViewController
-        rootViewController.pushViewController(movieListVC, animated: true)
         movieListVC.reactor = MovieListViewReactor(searchComicsUseCase: DefaultMovieUseCase(networkService: Network<WebAPI>()))
+        rootViewController.pushViewController(movieListVC, animated: true)
         return .one(flowContributor: .contribute(withNextPresentable: movieListVC, withNextStepper: movieListVC.reactor!))
     }
     
-    private func showMovieDetail() -> FlowContributors {
+    private func showMovieDetail(_ movie: Movie) -> FlowContributors {
         let movieDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
-        rootViewController.pushViewController(movieDetailVC, animated: true)
-        movieDetailVC.reactor = MovieDetailViewReactor()
-        return .one(flowContributor: .contribute(withNextPresentable: movieDetailVC, withNextStepper: movieDetailVC.reactor))
+        movieDetailVC.reactor = MovieDetailViewReactor(movie: movie)
+        movieDetailVC.modalPresentationStyle = .overFullScreen
+        rootViewController.present(movieDetailVC, animated: true, completion: nil)
+        return .one(flowContributor: .contribute(withNextPresentable: movieDetailVC, withNextStepper: movieDetailVC.reactor!))
     }
 }

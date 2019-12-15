@@ -11,6 +11,6 @@ import RxFlow
 
 enum MovieStep: Step {
     case showMovieListView
-    case showMovieDetial
-    case pop
+    case showMovieDetial(Movie)
+    case dismiss
 }

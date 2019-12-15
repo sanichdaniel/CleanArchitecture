@@ -13,11 +13,12 @@ final class MovieCellReactor: Reactor {
 
     struct State {
         var posterImage: String?
+        var title: String?
     }
 
     let initialState: State
 
     init(movie: Movie) {
-        self.initialState = State(posterImage: movie.posterImage)
+        self.initialState = State(posterImage: movie.posterImage, title: movie.title)
     }
 }
