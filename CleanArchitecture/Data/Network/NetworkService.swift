@@ -33,17 +33,19 @@ final class Network<Target> where Target: Moya.TargetType {
         self.provider = MoyaProvider(plugins: plugins)
     }
     
-    func request<T: Codable>(_ target: Target, responseType: T.Type) -> Single<Resource<T>> {
+    func request<T: Codable & ErrorType>(_ target: Target, responseType: T.Type) -> Single<Resource<T>> {
         return provider.rx.request(target)
             .flatMap { response -> Single<Resource<T>> in
                 do {
                     let decoder = JSONDecoder()
                     let value = try decoder.decode(T.self, from: response.data)
+                    guard value.response == "True" else {
+                        return Single.just(.Failure(value.error))
+                    }
                     return Single.just(.Success(value))
                 } catch {
-                    return Single.just(.Failure("ERROR"))
+                    return Single.just(.Failure("오류 발생"))
                 }
         }
     }
-    
 }

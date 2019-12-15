@@ -17,6 +17,7 @@ final class MovieDetailViewController: BaseViewController, StoryboardView {
     @IBOutlet weak var labelYear: UILabel!
     @IBOutlet weak var btnClose: UIButton!
     @IBOutlet weak var btnFavorite: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var disposeBag = DisposeBag()
     
@@ -39,6 +40,12 @@ final class MovieDetailViewController: BaseViewController, StoryboardView {
 private extension MovieDetailViewController {
     
     func bindView(_ reactor: Reactor) {
+        
+        scrollView.rx.contentOffset.subscribe(onNext: { [weak self] offset in
+            if offset.y < 0 {
+                reactor.dismiss()
+            }
+        })
         
         if let posterImageString = reactor.currentState.movie.posterImage, let imageURL = URL(string: posterImageString) {
             imageViewPoster.kf.setImage(with: imageURL)

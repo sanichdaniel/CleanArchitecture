@@ -33,6 +33,8 @@ final class MovieFlow: Flow {
         case .dismiss:
             rootViewController.dismiss(animated: true, completion: nil)
             return .none
+        default:
+            return .none
         }
     }
     

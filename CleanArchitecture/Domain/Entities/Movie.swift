@@ -8,13 +8,22 @@
 
 import Foundation
 
-struct MovieResponse: Codable {
-    var totalResults: String
-    var movies: [Movie]
+protocol ErrorType {
+    var error: String? { get }
+    var response: String? { get }
+}
+
+struct MovieResponse: Codable, ErrorType {
+    var totalResults: String?
+    var movies: [Movie]? = []
+    var error: String?
+    var response: String?
     
     enum CodingKeys: String, CodingKey {
         case totalResults = "totalResults"
         case movies = "Search"
+        case error = "Error"
+        case response = "Response"
     }
 }
 

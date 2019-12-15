@@ -21,7 +21,6 @@ final class MovieListViewController: BaseViewController, StoryboardView, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.becomeFirstResponder()
     }
 
     func bind(reactor: MovieListViewReactor) {
@@ -41,15 +40,22 @@ private extension MovieListViewController {
         
         searchBar.rx.text
             .orEmpty
-            .debounce(0.3, scheduler: MainScheduler.instance)
+            .debounce(0.5, scheduler: MainScheduler.instance)
             .map {
-                $0.isEmpty ? Reactor.Action.emptyInput : Reactor.Action.fetchMovies(title: $0)
+                $0.isEmpty ? Reactor.Action.emptyInput : Reactor.Action.fetchMovies(title: $0, fetchNextPage: false)
             }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
 
     func bindState(_ reactor: MovieListViewReactor) {
+        
+        reactor.state.map { $0.error }
+            .ignoreNil()
+            .subscribe(onNext: { [weak self] error in
+                self?.showErrorToast(error)
+            }).disposed(by: disposeBag)
+        
         reactor.state.map { $0.isLoading }
         .distinctUntilChanged()
         .subscribe(onNext: { [weak self] isLoading in
@@ -61,6 +67,18 @@ private extension MovieListViewController {
             .bind(to: collectionViewMovies.rx.items(cellIdentifier: "MovieCell", cellType: MovieCell.self)) { (_, movie, cell) in
                 cell.reactor = MovieCellReactor(movie: movie)
         }.disposed(by: disposeBag)
+        
+        collectionViewMovies.rx.contentOffset
+            .filter { [weak self] offset in
+                guard let self = self else { return false }
+                guard self.collectionViewMovies.frame.height > 0 else { return false }
+                return offset.y + self.collectionViewMovies.frame.height >= self.collectionViewMovies.contentSize.height - 100
+        }
+            .subscribe(onNext: { offset in
+                if !reactor.currentState.isLoading {
+                    reactor.action.onNext(.fetchMovies(title: self.searchBar.text!, fetchNextPage: true))
+                }
+            }).disposed(by: disposeBag)
         
         collectionViewMovies.rx.modelSelected(Movie.self)
         .subscribe(onNext: { movie in

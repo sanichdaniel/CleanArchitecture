@@ -9,7 +9,7 @@
 import RxSwift
 
 protocol MovieUseCase {
-    func fetchComics(title: String) -> Single<Resource<MovieResponse>>
+    func fetchComics(title: String, page: Int) -> Single<Resource<MovieResponse>>
 }
 
 final class DefaultMovieUseCase: MovieUseCase {
@@ -19,8 +19,8 @@ final class DefaultMovieUseCase: MovieUseCase {
         self.networkService = networkService
     }
     
-    func fetchComics(title: String) -> Single<Resource<MovieResponse>> {
-        return networkService.request(.searchMovies(title: title), responseType: MovieResponse.self)
+    func fetchComics(title: String, page: Int) -> Single<Resource<MovieResponse>> {
+        return networkService.request(.searchMovies(title: title, page: page), responseType: MovieResponse.self)
     }
     
 }

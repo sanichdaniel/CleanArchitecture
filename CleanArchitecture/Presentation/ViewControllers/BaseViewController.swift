@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class BaseViewController: UIViewController {
 
@@ -22,6 +23,7 @@ class BaseViewController: UIViewController {
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.center = self.view.center
         self.view.addSubview(activityIndicatorView)
+        self.view.addGestureRecognizer(self.endEditingRecognizer())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +31,18 @@ class BaseViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
+    private func endEditingRecognizer() -> UIGestureRecognizer {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        return tap
+    }
+    
+    func showErrorToast(_ content: String) {
+        var style = ToastStyle()
+        // this is just one of many style options
+        style.messageColor = .white
+        style.backgroundColor = .red
+        let superview = self.navigationController?.view! ?? self.view!
+        superview.makeToast(content, duration: 5.0, position: .top, style: style)
     }
 }

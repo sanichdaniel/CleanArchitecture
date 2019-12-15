@@ -25,18 +25,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NetworkActivityLogger.shared.startLogging()
         #endif
         
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-//        window = UIWindow(frame: UIScreen.main.bounds)
+        let tabBarFlow = TabBarFlow()
         
-        let comicFlow = MovieFlow()
-        
-        Flows.whenReady(flow1: comicFlow) { root in
+        Flows.whenReady(flow1: tabBarFlow) { root in
             self.window!.rootViewController = root
             self.window!.makeKeyAndVisible()
         }
         
-        self.coordinator.coordinate(flow: comicFlow, with: OneStepper(withSingleStep: MovieStep.showMovieListView))
+        self.coordinator.coordinate(flow: tabBarFlow, with: OneStepper(withSingleStep: MovieStep.showMovieListView))
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -69,4 +65,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-

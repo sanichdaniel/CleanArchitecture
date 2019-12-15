@@ -16,6 +16,7 @@ target 'CleanArchitecture' do
   pod 'Moya/RxSwift', '~> 13.0'
   pod 'AlamofireNetworkActivityLogger', '~> 2.3'
   pod 'Kingfisher', '~> 4.0'
+  pod 'Toast-Swift'
 
   # Pods for CleanArchitecture
 

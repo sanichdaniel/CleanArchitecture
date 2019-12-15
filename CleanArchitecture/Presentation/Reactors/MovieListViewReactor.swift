@@ -20,7 +20,7 @@ final class MovieListViewReactor: Reactor, Stepper {
     }
 
     enum Action {
-        case fetchMovies(title: String)
+        case fetchMovies(title: String, fetchNextPage: Bool)
         case emptyInput
     }
     
@@ -35,21 +35,25 @@ final class MovieListViewReactor: Reactor, Stepper {
         var error: String?
         var movies: [Movie] = []
         var totalCount = 0
+        var nextPage: Int = 1
     }
     
     let initialState = State()
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case let .fetchMovies(title):
-            let fetchComics: Observable<Mutation> = searchComicsUseCase.fetchComics(title: title)
+        case let .fetchMovies(title, fetchNextPage):
+            guard !title.isEmpty else {
+                return .empty()
+            }
+            let fetchComics: Observable<Mutation> = searchComicsUseCase.fetchComics(title: title, page: fetchNextPage ? currentState.nextPage : 1)
                 .asObservable()
                 .flatMap { resource -> Observable<Mutation> in
                     switch resource {
                     case let .Success(movieResponse):
-                        return .just(.setMovies(movieResponse.movies, Int(movieResponse.totalResults) ?? 0))
-                    case .Failure:
-                        return .just(.setMovies([], 0))
+                        return .just(.setMovies(movieResponse.movies!, Int(movieResponse.totalResults!) ?? 0))
+                    case let .Failure(error):
+                        return Observable.concat([.just(.setError(error)), .just(.setMovies([], 0))])
                     }
             }
             return Observable.concat([
@@ -70,8 +74,9 @@ final class MovieListViewReactor: Reactor, Stepper {
         case let .setError(error):
             newState.error = error
         case let .setMovies(movies, totalCount):
-            newState.movies = movies
+            newState.movies = currentState.movies + movies
             newState.totalCount = totalCount
+            newState.nextPage = currentState.nextPage + 1
         }
         return newState
     }

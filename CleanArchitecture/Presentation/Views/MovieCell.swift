@@ -20,7 +20,6 @@ final class MovieCell: UICollectionViewCell, StoryboardView {
     override func awakeFromNib() {
         super.awakeFromNib()
         labelMovieTitle.textColor = .white
-//        self.contentView.backgroundColor = .red
     }
     
     func bind(reactor: Reactor) {

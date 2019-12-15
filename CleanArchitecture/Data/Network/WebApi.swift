@@ -10,7 +10,7 @@ import Moya
 import CommonCrypto
 
 enum WebAPI {
-    case searchMovies(title: String)
+    case searchMovies(title: String, page: Int)
 }
 
 extension WebAPI: TargetType {
@@ -40,9 +40,9 @@ extension WebAPI: TargetType {
     
     var task: Task {
         switch self {
-        case let .searchMovies(title: title):
+        case let .searchMovies(title: title, page: page):
             return .requestParameters(
-                parameters: ["s": title],
+                parameters: ["s": title, "page": page],
                 encoding: URLEncoding.default)
         }
     }
