@@ -10,8 +10,10 @@ import Foundation
 import RxFlow
 
 final class MovieFlow: Flow {
+    let container: DIContainer
     
-    init() {
+    init(container: DIContainer) {
+        self.container = container
     }
     
     var root: Presentable {
@@ -40,14 +42,14 @@ final class MovieFlow: Flow {
     
     private func showMovieListView() -> FlowContributors {
         let movieListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController") as! MovieListViewController
-        movieListVC.reactor = MovieListViewReactor(searchComicsUseCase: DefaultMovieUseCase(networkService: Network<WebAPI>()))
+        movieListVC.reactor = container.makeMovieListViewReactor()
         rootViewController.pushViewController(movieListVC, animated: true)
         return .one(flowContributor: .contribute(withNextPresentable: movieListVC, withNextStepper: movieListVC.reactor!))
     }
     
     private func showMovieDetail(_ movie: Movie) -> FlowContributors {
         let movieDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
-        movieDetailVC.reactor = MovieDetailViewReactor(movie: movie)
+        movieDetailVC.reactor = container.makeMovieDetailViewReactor(movie: movie)
         movieDetailVC.modalPresentationStyle = .overFullScreen
         rootViewController.present(movieDetailVC, animated: true, completion: nil)
         return .one(flowContributor: .contribute(withNextPresentable: movieDetailVC, withNextStepper: movieDetailVC.reactor!))

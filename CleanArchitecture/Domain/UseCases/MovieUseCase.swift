@@ -9,18 +9,18 @@
 import RxSwift
 
 protocol MovieUseCase {
-    func fetchComics(title: String, page: Int) -> Single<Resource<MovieResponse>>
+    func searchMovies(title: String, page: Int) -> Single<Resource<MovieResponse>>
 }
 
 final class DefaultMovieUseCase: MovieUseCase {
-    let networkService: CANetwork
+    private let movieApiRepository: MovieApiRepository
     
-    init(networkService: CANetwork) {
-        self.networkService = networkService
+    init(movieApiRepository: MovieApiRepository) {
+        self.movieApiRepository = movieApiRepository
     }
     
-    func fetchComics(title: String, page: Int) -> Single<Resource<MovieResponse>> {
-        return networkService.request(.searchMovies(title: title, page: page), responseType: MovieResponse.self)
+    func searchMovies(title: String, page: Int) -> Single<Resource<MovieResponse>> {
+        return movieApiRepository.searchMovies(title: title, page: page)
     }
     
 }

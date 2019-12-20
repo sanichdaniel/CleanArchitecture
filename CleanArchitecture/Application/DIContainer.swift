@@ -6,3 +6,39 @@
 //  Copyright © 2019 sanichdaniel. All rights reserved.
 //
 
+import UIKit
+
+final class DIContainer {
+    
+    var networkService: CANetwork {
+        return Network<WebAPI>()
+    }
+    
+    // MARK: Use Cases
+    func makeMovieUseCase() -> MovieUseCase {
+        return DefaultMovieUseCase(movieApiRepository: makeMovieApiRepository())
+    }
+    
+    // MARK: Repositories
+    func makeMovieApiRepository() -> MovieApiRepository {
+        return DefaultMovieApiRepository(networkService: networkService)
+    }
+    
+    // MARK: Reactors
+    func makeMovieListViewReactor() -> MovieListViewReactor {
+        return MovieListViewReactor(movieUseCase: makeMovieUseCase())
+    }
+    
+    func makeMovieCellReactor(movie: Movie) -> MovieCellReactor {
+        return MovieCellReactor(movie: movie)
+    }
+    
+    func makeFavoriteMovieListViewReactor() -> FavoriteMovieListViewReactor {
+        return FavoriteMovieListViewReactor()
+    }
+    
+    func makeMovieDetailViewReactor(movie: Movie) -> MovieDetailViewReactor {
+        return MovieDetailViewReactor(movie: movie)
+    }
+    
+}

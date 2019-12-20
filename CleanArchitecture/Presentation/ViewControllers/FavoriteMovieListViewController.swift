@@ -54,14 +54,6 @@ private extension FavoriteMovieListViewController {
 //
 //        collectionViewMovies.rx.setDelegate(self)
 //        .disposed(by: disposeBag)
-//    
-//        reactor.state.map { $0.totalCount }
-//            .do(onNext: { [weak self] count in
-//                self?.labelTotalResult.isHidden = count == 0
-//            })
-//            .map { "검색 결과: \(String($0))" }
-//            .bind(to: labelTotalResult.rx.text)
-//            .disposed(by: disposeBag)
     }
     
 }

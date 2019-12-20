@@ -10,7 +10,10 @@ import RxFlow
 
 final class TabBarFlow: Flow {
     
-    init() {
+    let container: DIContainer
+    
+    init(container: DIContainer) {
+        self.container = container
     }
     
     var root: Presentable {
@@ -34,8 +37,8 @@ final class TabBarFlow: Flow {
     }
     
     private func showMovieListView() -> FlowContributors {
-        let flow1 = MovieFlow()
-        let flow2 = FavoriteFlow()
+        let flow1 = MovieFlow(container: container)
+        let flow2 = FavoriteFlow(container: container)
         Flows.whenReady(flow1: flow1, flow2: flow2) { [unowned self] (root1: UINavigationController, root2: UINavigationController) in
             root1.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
             root2.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)

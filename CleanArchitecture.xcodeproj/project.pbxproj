@@ -17,7 +17,10 @@
 		E141718623A6223900426AB7 /* FavoriteMovieListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141718523A6223900426AB7 /* FavoriteMovieListViewReactor.swift */; };
 		E141718923A643F800426AB7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141718823A643F800426AB7 /* Toast.swift */; };
 		E141718B23A6471000426AB7 /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141718A23A6471000426AB7 /* Observable+Extension.swift */; };
-		E141719223A65F8700426AB7 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141719123A65F8700426AB7 /* MovieRepository.swift */; };
+		E141719223A65F8700426AB7 /* MovieApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141719123A65F8700426AB7 /* MovieApiRepository.swift */; };
+		E141719423A7CC9100426AB7 /* MovieCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141719323A7CC9100426AB7 /* MovieCacheRepository.swift */; };
+		E141719723A7CF1700426AB7 /* DefaultMovieApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141719623A7CF1700426AB7 /* DefaultMovieApiRepository.swift */; };
+		E141719923A7CF2300426AB7 /* DefaultMovieCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141719823A7CF2300426AB7 /* DefaultMovieCacheRepository.swift */; };
 		E157782F23A28C8E00A5979E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157782E23A28C8E00A5979E /* NetworkService.swift */; };
 		E157783223A3C91D00A5979E /* WebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157783123A3C91D00A5979E /* WebApi.swift */; };
 		E1B7287123A517C800C753BC /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7287023A517C800C753BC /* MovieDetailViewController.swift */; };
@@ -74,7 +77,10 @@
 		E141718523A6223900426AB7 /* FavoriteMovieListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovieListViewReactor.swift; sourceTree = "<group>"; };
 		E141718823A643F800426AB7 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		E141718A23A6471000426AB7 /* Observable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
-		E141719123A65F8700426AB7 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
+		E141719123A65F8700426AB7 /* MovieApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiRepository.swift; sourceTree = "<group>"; };
+		E141719323A7CC9100426AB7 /* MovieCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCacheRepository.swift; sourceTree = "<group>"; };
+		E141719623A7CF1700426AB7 /* DefaultMovieApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMovieApiRepository.swift; sourceTree = "<group>"; };
+		E141719823A7CF2300426AB7 /* DefaultMovieCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMovieCacheRepository.swift; sourceTree = "<group>"; };
 		E157782E23A28C8E00A5979E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		E157783123A3C91D00A5979E /* WebApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebApi.swift; sourceTree = "<group>"; };
 		E1B7287023A517C800C753BC /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
@@ -150,9 +156,19 @@
 		E141719023A65F7700426AB7 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				E141719123A65F8700426AB7 /* MovieRepository.swift */,
+				E141719123A65F8700426AB7 /* MovieApiRepository.swift */,
+				E141719323A7CC9100426AB7 /* MovieCacheRepository.swift */,
 			);
 			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		E141719523A7CF0000426AB7 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				E141719623A7CF1700426AB7 /* DefaultMovieApiRepository.swift */,
+				E141719823A7CF2300426AB7 /* DefaultMovieCacheRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		E157783323A3CDA500A5979E /* Extensions */ = {
@@ -225,8 +241,8 @@
 		E1DC7DBD239F761B00D592FF /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				E141719023A65F7700426AB7 /* Interfaces */,
 				E1DC7DC1239F767200D592FF /* UseCases */,
+				E141719023A65F7700426AB7 /* Interfaces */,
 				E1DC7DC0239F766500D592FF /* Entities */,
 			);
 			path = Domain;
@@ -235,6 +251,7 @@
 		E1DC7DBE239F763600D592FF /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E141719523A7CF0000426AB7 /* Repositories */,
 				E1DC7DCA239F8D2E00D592FF /* Network */,
 			);
 			path = Data;
@@ -567,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E11170A523A4E2F000A20F41 /* MovieCell.swift in Sources */,
+				E141719423A7CC9100426AB7 /* MovieCacheRepository.swift in Sources */,
 				E157782F23A28C8E00A5979E /* NetworkService.swift in Sources */,
 				E1DC7DCE239F8FAC00D592FF /* MovieListViewReactor.swift in Sources */,
 				E141718B23A6471000426AB7 /* Observable+Extension.swift in Sources */,
@@ -574,12 +592,14 @@
 				E1DC7DDA239FD3D800D592FF /* DIContainer.swift in Sources */,
 				E1B7287723A616AE00C753BC /* TabBarFlow.swift in Sources */,
 				E1DC7DD2239F8FDA00D592FF /* MovieFlow.swift in Sources */,
-				E141719223A65F8700426AB7 /* MovieRepository.swift in Sources */,
+				E141719223A65F8700426AB7 /* MovieApiRepository.swift in Sources */,
 				E141718423A6221C00426AB7 /* FavoriteMovieListViewController.swift in Sources */,
 				E11170A723A4E3D800A20F41 /* MovieCellReactor.swift in Sources */,
+				E141719923A7CF2300426AB7 /* DefaultMovieCacheRepository.swift in Sources */,
 				E1DC7D92239CD3EE00D592FF /* ViewController.swift in Sources */,
 				E1DC7DCC239F8F9900D592FF /* MovieListViewController.swift in Sources */,
 				E1DC7DC9239F8B7500D592FF /* BaseViewController.swift in Sources */,
+				E141719723A7CF1700426AB7 /* DefaultMovieApiRepository.swift in Sources */,
 				E141718623A6223900426AB7 /* FavoriteMovieListViewReactor.swift in Sources */,
 				E11170A223A4D76B00A20F41 /* Movie.swift in Sources */,
 				E1DC7D8E239CD3EE00D592FF /* AppDelegate.swift in Sources */,

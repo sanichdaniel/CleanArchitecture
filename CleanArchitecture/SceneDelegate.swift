@@ -13,6 +13,7 @@ import AlamofireNetworkActivityLogger
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let appDIContainer = DIContainer()
     var coordinator = FlowCoordinator()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -25,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NetworkActivityLogger.shared.startLogging()
         #endif
         
-        let tabBarFlow = TabBarFlow()
+        let tabBarFlow = TabBarFlow(container: appDIContainer)
         
         Flows.whenReady(flow1: tabBarFlow) { root in
             self.window!.rootViewController = root

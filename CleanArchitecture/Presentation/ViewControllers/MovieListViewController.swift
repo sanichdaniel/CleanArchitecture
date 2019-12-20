@@ -42,7 +42,7 @@ private extension MovieListViewController {
             .orEmpty
             .debounce(0.5, scheduler: MainScheduler.instance)
             .map {
-                $0.isEmpty ? Reactor.Action.emptyInput : Reactor.Action.fetchMovies(title: $0, fetchNextPage: false)
+                $0.isEmpty ? Reactor.Action.emptyInput : Reactor.Action.searchMovies(title: $0, fetchNextPage: false)
             }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -76,7 +76,7 @@ private extension MovieListViewController {
         }
             .subscribe(onNext: { offset in
                 if !reactor.currentState.isLoading {
-                    reactor.action.onNext(.fetchMovies(title: self.searchBar.text!, fetchNextPage: true))
+                    reactor.action.onNext(.searchMovies(title: self.searchBar.text!, fetchNextPage: true))
                 }
             }).disposed(by: disposeBag)
         

@@ -23,14 +23,16 @@ final class MovieCell: UICollectionViewCell, StoryboardView {
     }
     
     func bind(reactor: Reactor) {
-        imageViewPoster.image = nil
-        labelMovieTitle.text = nil
-        if let url = reactor.currentState.posterImage, !url.isEmpty, let imageURL = URL(string: url) {
-            imageViewPoster.kf.setImage(with: imageURL)
-            labelMovieTitle.isHidden = true
-        } else {
-            labelMovieTitle.text = reactor.currentState.title
-            labelMovieTitle.isHidden = false
-        }
+        // 이미지 있으면 이미지 아니면 라벨
+        
+//        imageViewPoster.image = nil
+//        labelMovieTitle.text = nil
+//        if let url = reactor.currentState.posterImage, !url.isEmpty, let imageURL = URL(string: url) {
+//            imageViewPoster.kf.setImage(with: imageURL)
+//            labelMovieTitle.isHidden = true
+//        } else {
+//            labelMovieTitle.text = reactor.currentState.title
+//            labelMovieTitle.isHidden = false
+//        }
     }
 }

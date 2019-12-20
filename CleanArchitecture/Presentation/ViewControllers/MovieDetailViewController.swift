@@ -45,15 +45,19 @@ private extension MovieDetailViewController {
             if offset.y < 0 {
                 reactor.dismiss()
             }
-        })
+            }).disposed(by: disposeBag)
         
         if let posterImageString = reactor.currentState.movie.posterImage, let imageURL = URL(string: posterImageString) {
             imageViewPoster.kf.setImage(with: imageURL)
         }
-
-        labelTitle.text = reactor.currentState.movie.title
         
-        labelYear.text = reactor.currentState.movie.year
+        reactor.state.map { $0.movie.title }
+            .bind(to: labelTitle.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.movie.year }
+            .bind(to: labelYear.rx.text)
+            .disposed(by: disposeBag)
     }
 
     func bindAction(_ reactor: Reactor) {

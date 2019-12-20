@@ -9,8 +9,6 @@ target 'CleanArchitecture' do
   pod 'RxSwift'
   pod 'SnapKit'
   pod 'Alamofire'
-  pod 'Swinject'
-  pod 'SwinjectAutoregistration'
   pod 'RxFlow'
   pod 'Moya', '~> 13.0'
   pod 'Moya/RxSwift', '~> 13.0'

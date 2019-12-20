@@ -13,14 +13,14 @@ import RxCocoa
 
 final class MovieListViewReactor: Reactor, Stepper {
     let steps = PublishRelay<Step>()
-    let searchComicsUseCase: MovieUseCase
+    let movieUseCase: MovieUseCase
     
-    init(searchComicsUseCase: MovieUseCase) {
-        self.searchComicsUseCase = searchComicsUseCase
+    init(movieUseCase: MovieUseCase) {
+        self.movieUseCase = movieUseCase
     }
 
     enum Action {
-        case fetchMovies(title: String, fetchNextPage: Bool)
+        case searchMovies(title: String, fetchNextPage: Bool)
         case emptyInput
     }
     
@@ -42,11 +42,11 @@ final class MovieListViewReactor: Reactor, Stepper {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case let .fetchMovies(title, fetchNextPage):
+        case let .searchMovies(title, fetchNextPage):
             guard !title.isEmpty else {
                 return .empty()
             }
-            let fetchComics: Observable<Mutation> = searchComicsUseCase.fetchComics(title: title, page: fetchNextPage ? currentState.nextPage : 1)
+            let searchMovies: Observable<Mutation> = movieUseCase.searchMovies(title: title, page: fetchNextPage ? currentState.nextPage : 1)
                 .asObservable()
                 .flatMap { resource -> Observable<Mutation> in
                     switch resource {
@@ -58,7 +58,7 @@ final class MovieListViewReactor: Reactor, Stepper {
             }
             return Observable.concat([
                 .just(.setLoading(true)),
-                fetchComics,
+                searchMovies,
                 .just(.setLoading(false))
             ])
         case .emptyInput:

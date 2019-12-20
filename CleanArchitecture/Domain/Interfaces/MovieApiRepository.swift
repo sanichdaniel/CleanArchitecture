@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+
+protocol MovieApiRepository {
+    func searchMovies(title: String, page: Int) -> Single<Resource<MovieResponse>>
+}

@@ -10,8 +10,10 @@ import Foundation
 import RxFlow
 
 final class FavoriteFlow: Flow {
+    let container: DIContainer
     
-    init() {
+    init(container: DIContainer) {
+        self.container = container
     }
     
     var root: Presentable {

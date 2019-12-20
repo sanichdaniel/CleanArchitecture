@@ -12,13 +12,23 @@ final class MovieCellReactor: Reactor {
     typealias Action = NoAction
 
     struct State {
-        var posterImage: String?
+        var posterImageUrl: URL?
         var title: String?
     }
 
     let initialState: State
 
     init(movie: Movie) {
-        self.initialState = State(posterImage: movie.posterImage, title: movie.title)
+//        if let posterImageString = movie.posterImage, !posterImageString.isEmpty,
+        
+            self.initialState = State(posterImageUrl: nil, title: movie.title)
     }
+    
+//    if let url = reactor.currentState.posterImage, !url.isEmpty, let imageURL = URL(string: url) {
+//        imageViewPoster.kf.setImage(with: imageURL)
+//        labelMovieTitle.isHidden = true
+//    } else {
+//        labelMovieTitle.text = reactor.currentState.title
+//        labelMovieTitle.isHidden = false
+//    }
 }
