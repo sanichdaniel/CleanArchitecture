@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Disk
 
 final class DefaultMovieCacheRepository {
     
@@ -18,6 +19,8 @@ final class DefaultMovieCacheRepository {
 }
 
 extension DefaultMovieCacheRepository: MovieCacheRepository {
-    func setFavorite() {}
-    func getFavorites() {}
+    func setFavorite(movie: Movie) {}
+    func getFavorites() -> [Movie] {
+        return []
+    }
 }

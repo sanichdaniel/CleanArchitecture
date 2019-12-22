@@ -65,6 +65,11 @@ private extension MovieDetailViewController {
             .subscribe(onNext: {
                 reactor.dismiss()
             }).disposed(by: disposeBag)
+        
+        btnFavorite.rx.tap
+            .map { Reactor.Action.setFavorite}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
 
     func bindState(_ reactor: Reactor) {

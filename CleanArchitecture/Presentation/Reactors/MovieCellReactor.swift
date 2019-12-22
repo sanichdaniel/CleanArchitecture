@@ -19,16 +19,10 @@ final class MovieCellReactor: Reactor {
     let initialState: State
 
     init(movie: Movie) {
-//        if let posterImageString = movie.posterImage, !posterImageString.isEmpty,
-        
-            self.initialState = State(posterImageUrl: nil, title: movie.title)
+        var posterImageUrl: URL? = nil
+        if let urlString = movie.posterImage, !urlString.isEmpty, let posterUrl = URL(string: urlString) {
+            posterImageUrl = posterUrl
+        }
+        self.initialState = State(posterImageUrl: posterImageUrl, title: movie.title)
     }
-    
-//    if let url = reactor.currentState.posterImage, !url.isEmpty, let imageURL = URL(string: url) {
-//        imageViewPoster.kf.setImage(with: imageURL)
-//        labelMovieTitle.isHidden = true
-//    } else {
-//        labelMovieTitle.text = reactor.currentState.title
-//        labelMovieTitle.isHidden = false
-//    }
 }

@@ -24,6 +24,10 @@ final class DIContainer {
         return DefaultMovieApiRepository(networkService: networkService)
     }
     
+    func makeMovieCacheRepository() -> MovieCacheRepository {
+        return DefaultMovieCacheRepository()
+    }
+    
     // MARK: Reactors
     func makeMovieListViewReactor() -> MovieListViewReactor {
         return MovieListViewReactor(movieUseCase: makeMovieUseCase())
@@ -38,7 +42,7 @@ final class DIContainer {
     }
     
     func makeMovieDetailViewReactor(movie: Movie) -> MovieDetailViewReactor {
-        return MovieDetailViewReactor(movie: movie)
+        return MovieDetailViewReactor(movieCacheRepository: makeMovieCacheRepository(), movie: movie)
     }
     
 }
