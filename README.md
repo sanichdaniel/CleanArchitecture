@@ -15,15 +15,20 @@ App Divided into Domain, Presentation, Data Layer
 
 ![Alt text](README_FILES/folder.png?raw=true "Folder")
 
-![Alt text](README_FILES/CleanArchitecture.png?raw=true "Clean Artitecture")
+![Alt text](README_FILES/CleanArchitecture.png?raw=true "Clean Artitecture") { width: 100px; }
 
 
-* Navigation with *RxFlow*
+* Unidirectional Flow
+
+ViewController -> Reactor -> UseCase -> Repository 
+                        <-              <-                 <-
+                        
+* Navigation done by *RxFlow*
+
 
 DI with Factory Pattern
 ---
 Factory is in charge of making instances
-DIContainer is injected at SceneDelegate to Flows. 
  
 * define factory methods
 
@@ -52,3 +57,7 @@ final class DIContainer {
 ~~~swift
 movieDetailVC.reactor = container.makeMovieDetailViewReactor(movie: movie)
 ~~~
+
+TODO
+---
+* add test codes to each domain, presentation, data layer
