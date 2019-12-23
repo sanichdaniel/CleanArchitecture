@@ -13,9 +13,7 @@ App Divided into Domain, Presentation, Data Layer
 
 * Data Layer: implementation of repository
 
-![Alt text](README_FILES/folder.png?raw=true "Folder")
-
-<img src="README_FILES/CleanArchitecture.png" width="200">
+<img src="README_FILES/folder.png" width="600"> <img src="README_FILES/CleanArchitecture.png" width="600">
 
 
 * Unidirectional Flow
