@@ -49,7 +49,6 @@ final class FavoriteMovieListViewReactor: Reactor, Stepper {
         var newState = state
         switch mutation {
         case let .setFavoriteMovies(movies):
-            print("###", movies)
             newState.favoriteMovies = movies
         case let .setTotal(count):
             newState.totalCount = count

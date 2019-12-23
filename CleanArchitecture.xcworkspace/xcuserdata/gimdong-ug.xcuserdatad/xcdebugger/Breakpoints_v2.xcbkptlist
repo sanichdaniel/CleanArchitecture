@@ -158,8 +158,8 @@
             filePath = "CleanArchitecture/Presentation/Reactors/MovieListViewReactor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "mutate(action:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "CleanArchitecture/Presentation/Reactors/MovieListViewReactor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "mutate(action:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,8 +238,8 @@
             filePath = "CleanArchitecture/Presentation/ViewControllers/MovieListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "bindAction(_:)"
             landmarkType = "7">
             <Locations>
@@ -286,10 +286,10 @@
             filePath = "CleanArchitecture/Presentation/ViewControllers/MovieListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "bindState(_:)"
-            landmarkType = "7">
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -302,8 +302,8 @@
             filePath = "CleanArchitecture/Presentation/Reactors/MovieListViewReactor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "reduce(state:mutation:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "CleanArchitecture/Presentation/ViewControllers/MovieListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "bindState(_:)"
             landmarkType = "7">
             <Locations>
@@ -574,8 +574,8 @@
             filePath = "CleanArchitecture/Presentation/Reactors/FavoriteMovieListViewReactor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "reduce(state:mutation:)"
             landmarkType = "7">
          </BreakpointContent>

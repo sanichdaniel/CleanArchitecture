@@ -28,6 +28,7 @@ final class MovieListViewReactor: Reactor, Stepper {
         case setLoading(Bool)
         case setError(String?)
         case setMovies([Movie], Int)
+        case appendMovies([Movie], Int)
     }
     
     struct State {
@@ -46,12 +47,16 @@ final class MovieListViewReactor: Reactor, Stepper {
             guard !title.isEmpty else {
                 return .empty()
             }
-            let searchMovies: Observable<Mutation> = movieUseCase.searchMovies(title: title, page: fetchNextPage ? currentState.nextPage : 1)
+            let searchMovies: Observable<Mutation> = movieUseCase.searchMovies(title: title, page: fetchNextPage ? currentState.nextPage + 1 : 1)
                 .asObservable()
                 .flatMap { resource -> Observable<Mutation> in
                     switch resource {
                     case let .Success(movieResponse):
-                        return .just(.setMovies(movieResponse.movies!, Int(movieResponse.totalResults!) ?? 0))
+                        if fetchNextPage {
+                            return .just(.appendMovies(movieResponse.movies!, Int(movieResponse.totalResults!) ?? 0))
+                        } else {
+                            return .just(.setMovies(movieResponse.movies!, Int(movieResponse.totalResults!) ?? 0))
+                        }
                     case let .Failure(error):
                         return .just(.setError(error))
                     }
@@ -74,6 +79,10 @@ final class MovieListViewReactor: Reactor, Stepper {
         case let .setError(error):
             newState.error = error
         case let .setMovies(movies, totalCount):
+            newState.movies = movies
+            newState.totalCount = totalCount
+            newState.nextPage = 1
+        case let .appendMovies(movies, totalCount):
             newState.movies = currentState.movies + movies
             newState.totalCount = totalCount
             newState.nextPage = currentState.nextPage + 1

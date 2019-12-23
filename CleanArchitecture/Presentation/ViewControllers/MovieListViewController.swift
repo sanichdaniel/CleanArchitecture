@@ -24,22 +24,18 @@ final class MovieListViewController: BaseViewController, StoryboardView, UIColle
     }
 
     func bind(reactor: MovieListViewReactor) {
-        bindView(reactor)
         bindAction(reactor)
         bindState(reactor)
     }
 }
 
 private extension MovieListViewController {
-    
-    func bindView(_ reactor: MovieListViewReactor) {
-        
-    }
 
     func bindAction(_ reactor: MovieListViewReactor) {
         
         searchBar.rx.text
             .orEmpty
+            .distinctUntilChanged()
             .debounce(0.5, scheduler: MainScheduler.instance)
             .map {
                 $0.isEmpty ? Reactor.Action.emptyInput : Reactor.Action.searchMovies(title: $0, fetchNextPage: false)
@@ -89,9 +85,6 @@ private extension MovieListViewController {
         .disposed(by: disposeBag)
     
         reactor.state.map { $0.totalCount }
-            .do(onNext: { [weak self] count in
-                self?.labelTotalResult.isHidden = count == 0
-            })
             .map { "검색 결과: \(String($0))" }
             .bind(to: labelTotalResult.rx.text)
             .disposed(by: disposeBag)

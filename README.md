@@ -7,7 +7,7 @@ Architecture
 
 App Divided into Domain, Presentation, Data Layer
 
-* Domain Layer: Entity, Use Case, Repository Interface
+* Domain Layer: Entity, Use Case, Repository Interface. Repository contains web api and caching
 
 * Presentation: ViewController, View, Reactor
 
@@ -25,8 +25,7 @@ ViewController -> Reactor -> UseCase -> Repository -> UseCase -> Reactor -> View
 
 DI with Factory Pattern
 ---
-Factory is in charge of making instances
- 
+Use Factory pattern to encapsulate object creation 
 * define factory methods
 
 ~~~swift

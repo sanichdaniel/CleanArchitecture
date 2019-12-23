@@ -30,14 +30,6 @@ extension WebAPI: TargetType {
         return .get
     }
     
-    var parameters: [String: Any]? {
-        var params: [String: Any] = [:]
-        switch self {
-        case .searchMovies:
-            return params
-        }
-    }
-    
     var task: Task {
         switch self {
         case let .searchMovies(title: title, page: page):
