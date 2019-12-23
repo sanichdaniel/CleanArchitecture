@@ -18,8 +18,7 @@ App Divided into Domain, Presentation, Data Layer
 
 * Unidirectional Flow
 
-ViewController -> Reactor -> UseCase -> Repository 
-Repository -> UseCase -> Reactor -> ViewController
+ViewController -> Reactor -> UseCase -> Repository -> UseCase -> Reactor -> ViewController
                         
 * Navigation done by *RxFlow*
 
