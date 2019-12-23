@@ -16,6 +16,12 @@ App Divided into Domain, Presentation, Data Layer
 
 * Data Layer: implementation of repository
 
+**Dependency Rule**
+Inner layer does not know about outer layer!
+
+However Data Flow insists that Domain Layer get Data from Data Layer. So Domain layer could have dependency of Data Layer.
+Here comes *Dependency Inversion*. Domain Layer and Data Layer both depend on interface of repository.
+
 <img src="README_FILES/folder.png" width="300"> <img src="README_FILES/CleanArchitecture.png" width="400">
 
 
