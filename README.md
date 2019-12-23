@@ -17,4 +17,31 @@ Data Layer: implementation of repository
 
 * Navigation with "RxFlow"
 
-* DI with Factory Pattern
+DI with Factory Pattern
+---
+* make
+
+~~~swift
+final class DIContainer {
+    var networkService: CANetwork {
+        return Network<WebAPI>()
+    }
+
+    // MARK: Use Cases
+    func makeMovieUseCase() -> MovieUseCase {
+        return DefaultMovieUseCase(movieApiRepository: makeMovieApiRepository())
+    }
+
+    // MARK: Repositories
+    func makeMovieApiRepository() -> MovieApiRepository {
+        return DefaultMovieApiRepository(networkService: networkService)
+    }
+}
+
+~~~
+
+* usage
+
+~~~swift
+movieDetailVC.reactor = container.makeMovieDetailViewReactor(movie: movie)
+~~~
