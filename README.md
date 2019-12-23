@@ -18,13 +18,14 @@ App Divided into Domain, Presentation, Data Layer
 ![Alt text](README_FILES/CleanArchitecture.png?raw=true "Clean Artitecture")
 
 
-* Navigation with "RxFlow"
+* Navigation with *RxFlow*
 
 DI with Factory Pattern
 ---
 Factory is in charge of making instances
+DIContainer is injected at SceneDelegate to Flows. 
  
-* make
+* define factory methods
 
 ~~~swift
 final class DIContainer {
