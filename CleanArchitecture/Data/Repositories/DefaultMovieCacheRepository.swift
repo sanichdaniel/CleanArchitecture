@@ -13,14 +13,47 @@ import Disk
 
 final class DefaultMovieCacheRepository {
     
+    private var cachedMovies: [Movie] {
+        get {
+            return self.getFavorites()
+        }
+    }
+    
     init() {
     }
 
 }
 
 extension DefaultMovieCacheRepository: MovieCacheRepository {
-    func setFavorite(movie: Movie) {}
+    
+    func checkIsFavorite(movie: Movie) -> Bool {
+        return cachedMovies.contains(where: { $0.imdbID == movie.imdbID })
+    }
+    
+    func setFavorite(movie: Movie) {
+        do {
+            var movies = cachedMovies.filter { $0.imdbID == movie.imdbID }
+            movies.insert(movie, at: 0)
+            try Disk.append(movies, to: "movies", in: .caches)
+        } catch {
+            return
+        }
+    }
+    
+    func unSetFavorite(movie: Movie) {
+        do {
+            let movies = cachedMovies.filter { $0.imdbID != movie.imdbID}
+            try Disk.save(movies, to: .caches, as: "movies")
+        } catch {
+            return
+        }
+    }
+    
     func getFavorites() -> [Movie] {
-        return []
+        do {
+            return try Disk.retrieve("movies", from: .caches, as: [Movie].self)
+        } catch {
+            return []
+        }
     }
 }

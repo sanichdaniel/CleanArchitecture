@@ -31,7 +31,6 @@ final class MovieDetailViewController: BaseViewController, StoryboardView {
     }
 
     func bind(reactor: Reactor) {
-        bindView(reactor)
         bindAction(reactor)
         bindState(reactor)
     }
@@ -39,7 +38,7 @@ final class MovieDetailViewController: BaseViewController, StoryboardView {
 
 private extension MovieDetailViewController {
     
-    func bindView(_ reactor: Reactor) {
+    func bindState(_ reactor: Reactor) {
         
         scrollView.rx.contentOffset.subscribe(onNext: { [weak self] offset in
             if offset.y < 0 {
@@ -58,6 +57,10 @@ private extension MovieDetailViewController {
         reactor.state.map { $0.movie.year }
             .bind(to: labelYear.rx.text)
             .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isFavorite ? UIImage(named: "btnFavS") : UIImage(named: "btnFavNOnblack")}
+            .bind(to: btnFavorite.rx.image())
+        .disposed(by: disposeBag)
     }
 
     func bindAction(_ reactor: Reactor) {
@@ -70,9 +73,7 @@ private extension MovieDetailViewController {
             .map { Reactor.Action.setFavorite}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-    }
-
-    func bindState(_ reactor: Reactor) {
+        
     }
     
 }

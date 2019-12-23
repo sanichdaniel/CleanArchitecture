@@ -30,14 +30,29 @@ final class FavoriteFlow: Flow {
         switch step {
         case .showFavoriteListView:
             return showFavoriteListView()
+        case let .showMovieDetial(movie):
+            return showMovieDetailView(movie: movie)
+        case .dismiss:
+            rootViewController.dismiss(animated: true, completion: nil)
+            return .none
         default:
             return .none
         }
     }
     
     private func showFavoriteListView() -> FlowContributors {
-        let vc = UIViewController()
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FavoriteMovieListViewController") as! FavoriteMovieListViewController
+        vc.reactor = container.makeFavoriteMovieListViewReactor()
+        vc.modalPresentationStyle = .overFullScreen
         rootViewController.pushViewController(vc, animated: true)
-        return .none
+        return .one(flowContributor: .contribute(withNextPresentable: vc, withNextStepper: vc.reactor!))
+    }
+    
+    private func showMovieDetailView(movie: Movie) -> FlowContributors {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
+        vc.reactor = container.makeMovieDetailViewReactor(movie: movie)
+        vc.modalPresentationStyle = .overFullScreen
+        rootViewController.present(vc, animated: true, completion: nil)
+        return .one(flowContributor: .contribute(withNextPresentable: vc, withNextStepper: vc.reactor!))
     }
 }

@@ -9,6 +9,8 @@
 import Foundation
 
 protocol MovieCacheRepository {
+    func checkIsFavorite(movie: Movie) -> Bool
     func setFavorite(movie: Movie)
+    func unSetFavorite(movie: Movie)
     func getFavorites() -> [Movie]
 }

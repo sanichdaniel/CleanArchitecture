@@ -38,7 +38,7 @@ final class DIContainer {
     }
     
     func makeFavoriteMovieListViewReactor() -> FavoriteMovieListViewReactor {
-        return FavoriteMovieListViewReactor()
+        return FavoriteMovieListViewReactor(movieCacheRepository: makeMovieCacheRepository())
     }
     
     func makeMovieDetailViewReactor(movie: Movie) -> MovieDetailViewReactor {

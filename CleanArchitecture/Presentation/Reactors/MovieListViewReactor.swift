@@ -53,7 +53,7 @@ final class MovieListViewReactor: Reactor, Stepper {
                     case let .Success(movieResponse):
                         return .just(.setMovies(movieResponse.movies!, Int(movieResponse.totalResults!) ?? 0))
                     case let .Failure(error):
-                        return Observable.concat([.just(.setError(error)), .just(.setMovies([], 0))])
+                        return .just(.setError(error))
                     }
             }
             return Observable.concat([

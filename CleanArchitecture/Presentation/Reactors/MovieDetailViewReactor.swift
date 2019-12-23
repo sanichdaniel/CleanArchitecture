@@ -19,7 +19,7 @@ final class MovieDetailViewReactor: Reactor, Stepper {
     
     init(movieCacheRepository: MovieCacheRepository, movie: Movie) {
         self.movieCacheRepository = movieCacheRepository
-        self.initialState = State(movie: movie)
+        self.initialState = State(movie: movie, isFavorite: movieCacheRepository.checkIsFavorite(movie: movie))
     }
 
     enum Action {
@@ -27,25 +27,31 @@ final class MovieDetailViewReactor: Reactor, Stepper {
     }
     
     enum Mutation {
+        case setFavorite
     }
     
     struct State {
         var movie: Movie
+        var isFavorite: Bool
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .setFavorite:
-            movieCacheRepository.setFavorite(movie: currentState.movie)
-            return .empty()
-        default:
-            return .empty()
+            if currentState.isFavorite {
+                movieCacheRepository.unSetFavorite(movie: currentState.movie)
+            } else {
+                movieCacheRepository.setFavorite(movie: currentState.movie)
+            }
+            return .just(.setFavorite)
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
+        case .setFavorite:
+            newState.isFavorite = movieCacheRepository.checkIsFavorite(movie: currentState.movie)
         }
         return newState
     }
