@@ -15,13 +15,13 @@ App Divided into Domain, Presentation, Data Layer
 
 ![Alt text](README_FILES/folder.png?raw=true "Folder")
 
-<img src="README_FILES/CleanArchitecture.png width="200">
+<img src="README_FILES/CleanArchitecture.png" width="200">
 
 
 * Unidirectional Flow
 
-ViewController -> Reactor -> UseCase -> Repository   
-                        <-              <-                 <-
+ViewController -> Reactor -> UseCase -> Repository 
+Repository -> UseCase -> Reactor -> ViewController
                         
 * Navigation done by *RxFlow*
 
