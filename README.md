@@ -7,13 +7,16 @@ Architecture
 
 App Divided into Domain, Presentation, Data Layer
 
-> Domain Layer: Entity, Use Case, Repository Interface
+* Domain Layer: Entity, Use Case, Repository Interface
 
-> Presentation: ViewController, View, Reactor
+* Presentation: ViewController, View, Reactor
 
-> Data Layer: implementation of repository
+* Data Layer: implementation of repository
+
+![Alt text](README_FILES/folder.png?raw=true "Folder")
 
 ![Alt text](README_FILES/CleanArchitecture.png?raw=true "Clean Artitecture")
+
 
 * Navigation with "RxFlow"
 

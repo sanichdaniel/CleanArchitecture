@@ -207,12 +207,12 @@
 		E1DC7D8C239CD3EE00D592FF /* CleanArchitecture */ = {
 			isa = PBXGroup;
 			children = (
-				E157783323A3CDA500A5979E /* Extensions */,
-				E1DC7DD8239FD3C400D592FF /* Application */,
 				E1DC7DBF239F763D00D592FF /* Presentation */,
 				E1DC7DBD239F761B00D592FF /* Domain */,
 				E1DC7DBE239F763600D592FF /* Data */,
+				E1DC7DD8239FD3C400D592FF /* Application */,
 				E1DC7DC2239F77BE00D592FF /* Resources */,
+				E157783323A3CDA500A5979E /* Extensions */,
 				E1DC7D8D239CD3EE00D592FF /* AppDelegate.swift */,
 				E1DC7D8F239CD3EE00D592FF /* SceneDelegate.swift */,
 				E1DC7D91239CD3EE00D592FF /* ViewController.swift */,
