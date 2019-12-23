@@ -2,6 +2,8 @@ Clean Architecture
 ===
 iOS Sample project of movies implemented with CleanArchitecture and MVVM.
 
+[**Today I Learned Clean Architecture**] (https://github.com/sanichdaniel/today-I-learned/blob/master/swift/cleanArchitecture.md)
+
 Architecture
 ---
 
