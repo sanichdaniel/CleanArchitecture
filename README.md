@@ -65,4 +65,5 @@ movieDetailVC.reactor = container.makeMovieDetailViewReactor(movie: movie)
 
 TODO
 ---
+* make Tutorial Page for Users who have first Visited app. Check if the user first visited by storing has Checked information on UserDefaultConfig ( property wrapper for UserDefault) 
 * add test codes to each domain, presentation, data layer
