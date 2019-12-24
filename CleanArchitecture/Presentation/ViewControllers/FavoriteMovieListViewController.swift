@@ -66,7 +66,7 @@ extension FavoriteMovieListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = view.frame.width - (60)
         let widthPerItem = availableWidth / 2
-        return CGSize(width: widthPerItem, height: widthPerItem * 1.4)
+        return CGSize(width: widthPerItem, height: widthPerItem * 1.7)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

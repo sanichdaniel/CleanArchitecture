@@ -51,11 +51,14 @@ final class MovieListViewReactor: Reactor, Stepper {
                 .asObservable()
                 .flatMap { resource -> Observable<Mutation> in
                     switch resource {
-                    case let .Success(movieResponse):
+                    case let .Success(data):
+                        guard let movies = data.movies, let totalResults = data.totalResults, let totalCount = Int(totalResults) else {
+                            return .empty()
+                        }
                         if fetchNextPage {
-                            return .just(.appendMovies(movieResponse.movies!, Int(movieResponse.totalResults!) ?? 0))
+                            return .just(.appendMovies(movies, totalCount))
                         } else {
-                            return .just(.setMovies(movieResponse.movies!, Int(movieResponse.totalResults!) ?? 0))
+                            return .just(.setMovies(movies, totalCount))
                         }
                     case let .Failure(error):
                         return .just(.setError(error))
