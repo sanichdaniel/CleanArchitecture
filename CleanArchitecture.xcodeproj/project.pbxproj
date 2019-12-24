@@ -11,6 +11,8 @@
 		BC202569EFD28C37B98C38C2 /* Pods_CleanArchitecture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD7ADD507516C102724B98 /* Pods_CleanArchitecture.framework */; };
 		D3171DEA0F25C22ACF3F54A3 /* Pods_CleanArchitectureTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3336D10153BA3B6E97A522 /* Pods_CleanArchitectureTests.framework */; };
 		E103835B23B0FE460099894F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E103835A23B0FE460099894F /* README.md */; };
+		E103836023B1AB670099894F /* UserDefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E103835F23B1AB670099894F /* UserDefaultConfig.swift */; };
+		E103836323B1AB9F0099894F /* UserDefaultPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E103836223B1AB9F0099894F /* UserDefaultPropertyWrapper.swift */; };
 		E11170A223A4D76B00A20F41 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11170A123A4D76B00A20F41 /* Movie.swift */; };
 		E11170A523A4E2F000A20F41 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11170A423A4E2F000A20F41 /* MovieCell.swift */; };
 		E11170A723A4E3D800A20F41 /* MovieCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11170A623A4E3D800A20F41 /* MovieCellReactor.swift */; };
@@ -72,6 +74,8 @@
 		C6E5E80724139A22BE27BEC1 /* Pods-CleanArchitecture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanArchitecture.debug.xcconfig"; path = "Target Support Files/Pods-CleanArchitecture/Pods-CleanArchitecture.debug.xcconfig"; sourceTree = "<group>"; };
 		DFEE86C5FA7752C139D78FD8 /* Pods-CleanArchitectureUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleanArchitectureUITests.debug.xcconfig"; path = "Target Support Files/Pods-CleanArchitectureUITests/Pods-CleanArchitectureUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E103835A23B0FE460099894F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E103835F23B1AB670099894F /* UserDefaultConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConfig.swift; sourceTree = "<group>"; };
+		E103836223B1AB9F0099894F /* UserDefaultPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultPropertyWrapper.swift; sourceTree = "<group>"; };
 		E11170A123A4D76B00A20F41 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		E11170A423A4E2F000A20F41 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		E11170A623A4E3D800A20F41 /* MovieCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellReactor.swift; sourceTree = "<group>"; };
@@ -153,6 +157,15 @@
 				F8C1F9E769DBDD75BDC16C6E /* Pods-CleanArchitectureUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E103836123B1AB890099894F /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				E103835F23B1AB670099894F /* UserDefaultConfig.swift */,
+				E103836223B1AB9F0099894F /* UserDefaultPropertyWrapper.swift */,
+			);
+			name = UserDefault;
 			sourceTree = "<group>";
 		};
 		E141719023A65F7700426AB7 /* Interfaces */ = {
@@ -256,6 +269,7 @@
 			children = (
 				E141719523A7CF0000426AB7 /* Repositories */,
 				E1DC7DCA239F8D2E00D592FF /* Network */,
+				E103836123B1AB890099894F /* UserDefault */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -598,6 +612,7 @@
 				E1DC7DD2239F8FDA00D592FF /* MovieFlow.swift in Sources */,
 				E141719223A65F8700426AB7 /* MovieApiRepository.swift in Sources */,
 				E141718423A6221C00426AB7 /* FavoriteMovieListViewController.swift in Sources */,
+				E103836323B1AB9F0099894F /* UserDefaultPropertyWrapper.swift in Sources */,
 				E11170A723A4E3D800A20F41 /* MovieCellReactor.swift in Sources */,
 				E141719923A7CF2300426AB7 /* DefaultMovieCacheRepository.swift in Sources */,
 				E1DC7D92239CD3EE00D592FF /* ViewController.swift in Sources */,
@@ -611,6 +626,7 @@
 				E1DC7D90239CD3EE00D592FF /* SceneDelegate.swift in Sources */,
 				E1DC7DD4239F981000D592FF /* MovieUseCase.swift in Sources */,
 				E157783223A3C91D00A5979E /* WebApi.swift in Sources */,
+				E103836023B1AB670099894F /* UserDefaultConfig.swift in Sources */,
 				E141718923A643F800426AB7 /* Toast.swift in Sources */,
 				E1B7287323A517D200C753BC /* MovieDetailViewReactor.swift in Sources */,
 				E1B7287523A614AF00C753BC /* FavoriteFlow.swift in Sources */,

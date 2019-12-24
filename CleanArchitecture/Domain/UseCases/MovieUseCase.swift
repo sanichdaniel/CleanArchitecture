@@ -11,14 +11,19 @@ import RxSwift
 protocol MovieUseCase {
     func searchMovies(title: String, page: Int) -> Single<Resource<MovieResponse>>
     
+    func checkIsFavorite(movie: Movie) -> Bool
     func setFavorite(movie: Movie)
+    func unSetFavorite(movie: Movie)
+    func getFavorites() -> [Movie]
 }
 
 final class DefaultMovieUseCase: MovieUseCase {
     private let movieApiRepository: MovieApiRepository
+    private let movieCacheRepository: MovieCacheRepository
     
-    init(movieApiRepository: MovieApiRepository) {
+    init(movieApiRepository: MovieApiRepository, movieCacheRepository: MovieCacheRepository) {
         self.movieApiRepository = movieApiRepository
+        self.movieCacheRepository = movieCacheRepository
     }
     
     func searchMovies(title: String, page: Int) -> Single<Resource<MovieResponse>> {
@@ -26,7 +31,19 @@ final class DefaultMovieUseCase: MovieUseCase {
     }
     
     func setFavorite(movie: Movie) {
-        return
+        movieCacheRepository.setFavorite(movie: movie)
+    }
+    
+    func checkIsFavorite(movie: Movie) -> Bool {
+        return movieCacheRepository.checkIsFavorite(movie: movie)
+    }
+    
+    func unSetFavorite(movie: Movie) {
+        movieCacheRepository.unSetFavorite(movie: movie)
+    }
+    
+    func getFavorites() -> [Movie] {
+        movieCacheRepository.getFavorites()
     }
     
 }

@@ -14,10 +14,10 @@ import RxCocoa
 
 final class FavoriteMovieListViewReactor: Reactor, Stepper {
     let steps = PublishRelay<Step>()
-    let movieCacheRepository: MovieCacheRepository
+    let movieUseCase: MovieUseCase
     
-    init(movieCacheRepository: MovieCacheRepository) {
-        self.movieCacheRepository = movieCacheRepository
+    init(movieUseCase: MovieUseCase) {
+        self.movieUseCase = movieUseCase
     }
 
     enum Action {
@@ -40,7 +40,7 @@ final class FavoriteMovieListViewReactor: Reactor, Stepper {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .fetchFavoriteMovies:
-            let favoriteMovies: [Movie] = movieCacheRepository.getFavorites()
+            let favoriteMovies: [Movie] = movieUseCase.getFavorites()
             return Observable.concat([.just(.setFavoriteMovies(favoriteMovies)), .just(.setTotal(favoriteMovies.count))])
         }
     }

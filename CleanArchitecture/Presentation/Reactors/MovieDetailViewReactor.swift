@@ -13,13 +13,13 @@ import RxCocoa
 
 final class MovieDetailViewReactor: Reactor, Stepper {
     let steps = PublishRelay<Step>()
-    let movieCacheRepository: MovieCacheRepository
+    let movieUseCase: MovieUseCase
     
     let initialState: State
     
-    init(movieCacheRepository: MovieCacheRepository, movie: Movie) {
-        self.movieCacheRepository = movieCacheRepository
-        self.initialState = State(movie: movie, isFavorite: movieCacheRepository.checkIsFavorite(movie: movie))
+    init(movieUseCase: MovieUseCase, movie: Movie) {
+        self.movieUseCase = movieUseCase
+        self.initialState = State(movie: movie, isFavorite: movieUseCase.checkIsFavorite(movie: movie))
     }
 
     enum Action {
@@ -39,9 +39,9 @@ final class MovieDetailViewReactor: Reactor, Stepper {
         switch action {
         case .setFavorite:
             if currentState.isFavorite {
-                movieCacheRepository.unSetFavorite(movie: currentState.movie)
+                movieUseCase.unSetFavorite(movie: currentState.movie)
             } else {
-                movieCacheRepository.setFavorite(movie: currentState.movie)
+                movieUseCase.setFavorite(movie: currentState.movie)
             }
             return .just(.setFavorite)
         }
@@ -51,7 +51,7 @@ final class MovieDetailViewReactor: Reactor, Stepper {
         var newState = state
         switch mutation {
         case .setFavorite:
-            newState.isFavorite = movieCacheRepository.checkIsFavorite(movie: currentState.movie)
+            newState.isFavorite = movieUseCase.checkIsFavorite(movie: currentState.movie)
         }
         return newState
     }

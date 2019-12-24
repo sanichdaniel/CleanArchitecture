@@ -16,7 +16,7 @@ final class DIContainer {
     
     // MARK: Use Cases
     func makeMovieUseCase() -> MovieUseCase {
-        return DefaultMovieUseCase(movieApiRepository: makeMovieApiRepository())
+        return DefaultMovieUseCase(movieApiRepository: makeMovieApiRepository(), movieCacheRepository: makeMovieCacheRepository())
     }
     
     // MARK: Repositories
@@ -38,11 +38,11 @@ final class DIContainer {
     }
     
     func makeFavoriteMovieListViewReactor() -> FavoriteMovieListViewReactor {
-        return FavoriteMovieListViewReactor(movieCacheRepository: makeMovieCacheRepository())
+        return FavoriteMovieListViewReactor(movieUseCase: makeMovieUseCase())
     }
     
     func makeMovieDetailViewReactor(movie: Movie) -> MovieDetailViewReactor {
-        return MovieDetailViewReactor(movieCacheRepository: makeMovieCacheRepository(), movie: movie)
+        return MovieDetailViewReactor(movieUseCase: makeMovieUseCase(), movie: movie)
     }
     
 }
