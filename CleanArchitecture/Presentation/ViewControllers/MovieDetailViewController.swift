@@ -40,7 +40,7 @@ private extension MovieDetailViewController {
     
     func bindState(_ reactor: Reactor) {
         
-        scrollView.rx.contentOffset.subscribe(onNext: { [weak self] offset in
+        scrollView.rx.contentOffset.subscribe(onNext: { offset in
             if offset.y < 0 {
                 reactor.dismiss()
             }

@@ -26,7 +26,6 @@ final class FavoriteMovieListViewReactor: Reactor, Stepper {
     
     enum Mutation {
         case setFavoriteMovies([Movie])
-        case setTotal(Int)
     }
     
     struct State {
@@ -40,8 +39,7 @@ final class FavoriteMovieListViewReactor: Reactor, Stepper {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .fetchFavoriteMovies:
-            let favoriteMovies: [Movie] = movieUseCase.getFavorites()
-            return Observable.concat([.just(.setFavoriteMovies(favoriteMovies)), .just(.setTotal(favoriteMovies.count))])
+            return .just(.setFavoriteMovies(movieUseCase.getFavorites()))
         }
     }
     
@@ -50,8 +48,7 @@ final class FavoriteMovieListViewReactor: Reactor, Stepper {
         switch mutation {
         case let .setFavoriteMovies(movies):
             newState.favoriteMovies = movies
-        case let .setTotal(count):
-            newState.totalCount = count
+            newState.totalCount = movies.count
         }
         return newState
     }

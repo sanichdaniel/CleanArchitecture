@@ -10,5 +10,5 @@ import Foundation
 
 struct UserDefaultsConfig {
     @UserDefault(key: "HAS_SEEN_TUTORIAL", defaultValue: false)
-    static var hasShownConenctAccountView: Bool
+    static var hasSeenTutorial: Bool
 }

@@ -8,7 +8,7 @@
 import Foundation
 import RxFlow
 
-final class TabBarFlow: Flow {
+final class AppFlow: Flow {
     
     let container: DIContainer
     

@@ -18,7 +18,6 @@
 		E11170A723A4E3D800A20F41 /* MovieCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11170A623A4E3D800A20F41 /* MovieCellReactor.swift */; };
 		E141718423A6221C00426AB7 /* FavoriteMovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141718323A6221C00426AB7 /* FavoriteMovieListViewController.swift */; };
 		E141718623A6223900426AB7 /* FavoriteMovieListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141718523A6223900426AB7 /* FavoriteMovieListViewReactor.swift */; };
-		E141718923A643F800426AB7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141718823A643F800426AB7 /* Toast.swift */; };
 		E141718B23A6471000426AB7 /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141718A23A6471000426AB7 /* Observable+Extension.swift */; };
 		E141719223A65F8700426AB7 /* MovieApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141719123A65F8700426AB7 /* MovieApiRepository.swift */; };
 		E141719423A7CC9100426AB7 /* MovieCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141719323A7CC9100426AB7 /* MovieCacheRepository.swift */; };
@@ -29,7 +28,7 @@
 		E1B7287123A517C800C753BC /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7287023A517C800C753BC /* MovieDetailViewController.swift */; };
 		E1B7287323A517D200C753BC /* MovieDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7287223A517D200C753BC /* MovieDetailViewReactor.swift */; };
 		E1B7287523A614AF00C753BC /* FavoriteFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7287423A614AF00C753BC /* FavoriteFlow.swift */; };
-		E1B7287723A616AE00C753BC /* TabBarFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7287623A616AE00C753BC /* TabBarFlow.swift */; };
+		E1B7287723A616AE00C753BC /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7287623A616AE00C753BC /* AppFlow.swift */; };
 		E1DC7D8E239CD3EE00D592FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DC7D8D239CD3EE00D592FF /* AppDelegate.swift */; };
 		E1DC7D90239CD3EE00D592FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DC7D8F239CD3EE00D592FF /* SceneDelegate.swift */; };
 		E1DC7D92239CD3EE00D592FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DC7D91239CD3EE00D592FF /* ViewController.swift */; };
@@ -81,7 +80,6 @@
 		E11170A623A4E3D800A20F41 /* MovieCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellReactor.swift; sourceTree = "<group>"; };
 		E141718323A6221C00426AB7 /* FavoriteMovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovieListViewController.swift; sourceTree = "<group>"; };
 		E141718523A6223900426AB7 /* FavoriteMovieListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovieListViewReactor.swift; sourceTree = "<group>"; };
-		E141718823A643F800426AB7 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		E141718A23A6471000426AB7 /* Observable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
 		E141719123A65F8700426AB7 /* MovieApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiRepository.swift; sourceTree = "<group>"; };
 		E141719323A7CC9100426AB7 /* MovieCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCacheRepository.swift; sourceTree = "<group>"; };
@@ -92,7 +90,7 @@
 		E1B7287023A517C800C753BC /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		E1B7287223A517D200C753BC /* MovieDetailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewReactor.swift; sourceTree = "<group>"; };
 		E1B7287423A614AF00C753BC /* FavoriteFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteFlow.swift; sourceTree = "<group>"; };
-		E1B7287623A616AE00C753BC /* TabBarFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFlow.swift; sourceTree = "<group>"; };
+		E1B7287623A616AE00C753BC /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		E1DC7D8A239CD3EE00D592FF /* CleanArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1DC7D8D239CD3EE00D592FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1DC7D8F239CD3EE00D592FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -315,7 +313,7 @@
 				E1DC7DCF239F8FCC00D592FF /* MovieStep.swift */,
 				E1DC7DD1239F8FDA00D592FF /* MovieFlow.swift */,
 				E1B7287423A614AF00C753BC /* FavoriteFlow.swift */,
-				E1B7287623A616AE00C753BC /* TabBarFlow.swift */,
+				E1B7287623A616AE00C753BC /* AppFlow.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -346,7 +344,6 @@
 			isa = PBXGroup;
 			children = (
 				E11170A423A4E2F000A20F41 /* MovieCell.swift */,
-				E141718823A643F800426AB7 /* Toast.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -608,7 +605,7 @@
 				E141718B23A6471000426AB7 /* Observable+Extension.swift in Sources */,
 				E1DC7DD0239F8FCC00D592FF /* MovieStep.swift in Sources */,
 				E1DC7DDA239FD3D800D592FF /* DIContainer.swift in Sources */,
-				E1B7287723A616AE00C753BC /* TabBarFlow.swift in Sources */,
+				E1B7287723A616AE00C753BC /* AppFlow.swift in Sources */,
 				E1DC7DD2239F8FDA00D592FF /* MovieFlow.swift in Sources */,
 				E141719223A65F8700426AB7 /* MovieApiRepository.swift in Sources */,
 				E141718423A6221C00426AB7 /* FavoriteMovieListViewController.swift in Sources */,
@@ -627,7 +624,6 @@
 				E1DC7DD4239F981000D592FF /* MovieUseCase.swift in Sources */,
 				E157783223A3C91D00A5979E /* WebApi.swift in Sources */,
 				E103836023B1AB670099894F /* UserDefaultConfig.swift in Sources */,
-				E141718923A643F800426AB7 /* Toast.swift in Sources */,
 				E1B7287323A517D200C753BC /* MovieDetailViewReactor.swift in Sources */,
 				E1B7287523A614AF00C753BC /* FavoriteFlow.swift in Sources */,
 			);

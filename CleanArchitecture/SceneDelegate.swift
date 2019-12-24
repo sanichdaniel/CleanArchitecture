@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NetworkActivityLogger.shared.startLogging()
         #endif
         
-        let tabBarFlow = TabBarFlow(container: appDIContainer)
+        let tabBarFlow = AppFlow(container: appDIContainer)
         
         Flows.whenReady(flow1: tabBarFlow) { root in
             self.window!.rootViewController = root
