@@ -43,6 +43,6 @@ class BaseViewController: UIViewController {
         style.messageColor = .white
         style.backgroundColor = .red
         let superview = self.navigationController?.view! ?? self.view!
-        superview.makeToast(content, duration: 5.0, position: .top, style: style)
+        superview.makeToast(content, duration: 5.0, position: .center, style: style)
     }
 }

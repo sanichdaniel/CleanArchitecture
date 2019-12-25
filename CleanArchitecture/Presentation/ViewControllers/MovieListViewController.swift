@@ -38,7 +38,7 @@ private extension MovieListViewController {
             .distinctUntilChanged()
             .debounce(0.5, scheduler: MainScheduler.instance)
             .map {
-                $0.isEmpty ? Reactor.Action.emptyInput : Reactor.Action.searchMovies(title: $0, fetchNextPage: false)
+                $0.isEmpty ? Reactor.Action.emptyInput : Reactor.Action.updateQuery(title: $0)
             }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -70,11 +70,9 @@ private extension MovieListViewController {
                 guard self.collectionViewMovies.frame.height > 0 else { return false }
                 return offset.y + self.collectionViewMovies.frame.height >= self.collectionViewMovies.contentSize.height - 100
         }
-            .subscribe(onNext: { offset in
-                if !reactor.currentState.isLoading {
-                    reactor.action.onNext(.searchMovies(title: self.searchBar.text!, fetchNextPage: true))
-                }
-            }).disposed(by: disposeBag)
+        .map { _ in Reactor.Action.loadMovies }
+        .bind(to: reactor.action)
+        .disposed(by: disposeBag)
         
         collectionViewMovies.rx.modelSelected(Movie.self)
         .subscribe(onNext: { movie in
